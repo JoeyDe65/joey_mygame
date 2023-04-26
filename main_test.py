@@ -1,14 +1,28 @@
-#File created by: Joey De Marco
+# File created by: Joey De Marco
+# Agenda:
+# gIT GITHUB    
+# Build file and folder structures
+# Create libraries
+# testing github changes
+# I changed something - I changed something else tooooo!
+
+# This file was created by: Joey De Marco
+# Sources: http://kidscancode.org/blog/2016/08/pygame_1-1_getting-started/
+# Sources: 
 
 '''
+Game structure:
+GOALS; RULES; FEEDBACK; FREEDOM
 My goal is:
 
-Slime mob
+Slime mob (need to create new mob class that jumps)
+
 A mob that bounces along the floor...
 Player gets bounced away when colliding 
 
 Reach goal:
 use images and animated sprites...
+create rotating that rotates only when it goes in a direction
 
 '''
 
@@ -16,13 +30,16 @@ use images and animated sprites...
 import pygame as pg
 import os
 # import settings 
-from settings import *
-from sprites import *
+from settings_test import *
+from sprites_test import *
+from math import *
+from math import ceil
+from os import path
 # from pg.sprite import Sprite
 
 # set up assets folders
 game_folder = os.path.dirname(__file__)
-img_folder = os.path.join(game_folder, "img")
+img_folder = os.path.join(game_folder, "images")
 
 # create game class in order to pass properties to the sprites file
 
@@ -36,9 +53,14 @@ class Game:
         self.clock = pg.time.Clock()
         self.running = True
         print(self.screen)
+    
+    def load_data(self):
+        self.player_img = pg.image.load(path.join(img_folder, "bellar_man_single_frm.png")).convert()
+
     def new(self):
         # starting a new game
         self.score = 0
+        self.load_data()
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
@@ -55,7 +77,7 @@ class Game:
             self.all_sprites.add(p)
             self.platforms.add(p)
         for i in range(0,10):
-            m = Mob(20,20,(0,255,0))
+            m = Mob(self, 20,20,(0,255,0))
             self.all_sprites.add(m)
             self.enemies.add(m)
         self.run()
@@ -78,6 +100,13 @@ class Game:
                     self.player.jump()
     def update(self):
         self.all_sprites.update()
+        mhits = pg.sprite.spritecollide(self.player, self.enemies, False)
+        if mhits:
+            if abs(self.player.vel.x) > abs(self.player.vel.y):
+                self.player.vel.x *= -1
+            else:
+                self.player.vel.y *= -1
+            
         if self.player.vel.y > 0:
             hits = pg.sprite.spritecollide(self.player, self.platforms, False)
             if hits:
@@ -89,10 +118,10 @@ class Game:
                 else:
                     self.player.pos.y = hits[0].rect.top
                     self.player.vel.y = 0
-
     def draw(self):
         self.screen.fill(BLUE)
         self.all_sprites.draw(self.screen)
+        self.draw_text(str(self.player.rot), 24, WHITE, WIDTH/2, HEIGHT/2)
         # is this a method or a function?
         pg.display.flip()
     def draw_text(self, text, size, color, x, y):
