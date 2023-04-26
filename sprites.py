@@ -114,7 +114,7 @@ class Mob(Sprite):
 # create a new platform class...
 
 class Platform(Sprite):
-    def __init__(self, x, y, width, height, color, variant):
+    def __init__(self, x, y, width, height, color, variant, velocity):
         Sprite.__init__(self)
         self.width = width
         self.height = height
