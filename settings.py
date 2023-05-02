@@ -18,7 +18,7 @@ SCORE = 0
 PAUSED = False
 
 # Starting platforms
-PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40, (200,200,200), "normal"),
+PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40, (200,200,200), "moving"),
                  (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20, (100,255,100), "bouncey"),
                  (125, HEIGHT - 350, 100, 5, (200,100,50), "disappearing"),
                  (350, 200, 100, 20, (200,200,200), "normal"),
