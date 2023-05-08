@@ -161,3 +161,4 @@ class Platform(Sprite):
         self.rect.x = x
         self.rect.y = y
         self.variant = variant
+        
