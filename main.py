@@ -77,7 +77,7 @@ class Game:
             if hits:
                 if hits[0].variant == "disappearing":
                     hits[0].kill()
-                elif hits[0].variant == "bouncey":
+                elif hits[0].variant == "bouncy":
                     self.player.pos.y = hits[0].rect.top
                     self.player.vel.y = -PLAYER_JUMP
                 else:

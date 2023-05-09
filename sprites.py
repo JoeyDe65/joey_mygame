@@ -124,7 +124,13 @@ class Platform(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+        self.speed = 1
         self.variant = variant
     def update(self):
-        if self.variant == "moving":
-         self.rect.x += 5
+        if self.variant == "bouncy":
+         self.rect.x -= self.speed
+         if self.rect.right > WIDTH or self.rect.left < 0:
+            self.speed *= -1
+        if self.variant == "rising":
+         self.rect.y -= self.speed
+    
