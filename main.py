@@ -43,12 +43,6 @@ class Game:
         self.platforms = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
         self.player = Player(self)
-        self.plat1 = Platform(WIDTH, 50, 0, HEIGHT-50, (150,150,150), "normal")
-        # self.plat1 = Platform(WIDTH, 50, 0, HEIGHT-50, (150,150,150), "normal")
-        self.all_sprites.add(self.plat1)
-
-        self.platforms.add(self.plat1)
-        
         self.all_sprites.add(self.player)
         for plat in PLATFORM_LIST:
             p = Platform(*plat)
