@@ -125,6 +125,6 @@ class Platform(Sprite):
         self.rect.x = x
         self.rect.y = y
         self.variant = variant
-def update(self):
-    if self.variant == "moving":
-        self.rect.y += 5 
+    def update(self):
+        if self.variant == "moving":
+         self.rect.x += 5
