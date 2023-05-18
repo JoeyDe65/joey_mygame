@@ -1,4 +1,5 @@
 import pygame as pg
+
 from pygame.sprite import Sprite
 from settings_test import *
 from random import randint
@@ -161,4 +162,3 @@ class Platform(Sprite):
         self.rect.x = x
         self.rect.y = y
         self.variant = variant
-        

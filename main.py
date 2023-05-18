@@ -14,6 +14,7 @@ use images and animated sprites...
 
 # import libs
 import pygame as pg
+import random
 import os
 # import settings 
 from settings import *
@@ -83,10 +84,27 @@ class Game:
                 else:
                     self.player.pos.y = hits[0].rect.top
                     self.player.vel.y = 0
+                # if player reaches top 1/4 of screen
+        if self.player.rect.top <= HEIGHT / 4:
+            self.player.pos.y += abs(self.player.vel.y)
+            for plat in self.platforms:
+                plat.rect.y += abs(self.player.vel.y)
+                if plat.rect.top >= HEIGHT:
+                    plat.kill()
+        
+         # spawn new platforms to keep same average number
+        while len(self.platforms) < 6:
+            width = random.randrange(50, 100)
+            p = Platform(random.randrange(0, WIDTH - width),
+                         random.randrange(-75, -30),
+                         width, 20)
+            self.platforms.add(p)
+            self.all_sprites.add(p)
+
 
     def draw(self):
         self.screen.fill(BLUE)
-        self.draw_text("hello there...", 24, WHITE, WIDTH/2, HEIGHT/2)
+        self.draw_text("Blocky Jump!", 24, WHITE, WIDTH/2, HEIGHT/2)
         self.all_sprites.draw(self.screen)
 
         # is this a method or a function?

@@ -1,6 +1,7 @@
 # File created by: Joey De Marco
 
-WIDTH = 800
+TITLE = "Blocky Jump"
+WIDTH = 480
 HEIGHT = 600
 PLAYER_ACC = 2
 PLAYER_FRICTION = -0.3
@@ -21,5 +22,5 @@ PAUSED = False
 PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40, (200,200,200), "normal"),
                  (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20, (100,255,100), "bouncy"),
                  (125, HEIGHT - 350, 100, 5, (200,100,50), "disappearing"),
-                 (350, 200, 100, 20, (200,200,200), "rising"),
+                 (350, 200, 100, 20, (200,200,200), "bouncy"),
                  (175, 100, 50, 20, (200,200,200), "normal")]

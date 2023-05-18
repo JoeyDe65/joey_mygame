@@ -1,6 +1,7 @@
 # File created by: Joey De Marco
 
 import pygame as pg
+import _random
 from pygame.sprite import Sprite
 from settings import *
 from random import randint
@@ -130,7 +131,27 @@ class Platform(Sprite):
         if self.variant == "bouncy":
          self.rect.x -= self.speed
          if self.rect.right > WIDTH or self.rect.left < 0:
-            self.speed *= -1
+            self.speed *= -3
         if self.variant == "rising":
          self.rect.y -= self.speed
     
+class Random(_random.Random):
+    """Random number generator base class used by bound module functions.
+
+    Used to instantiate instances of Random to get generators that don't
+    share state.
+
+    Class Random can also be subclassed if you want to use a different basic
+    generator of your own devising: in that case, override the following
+    methods:  random(), seed(), getstate(), and setstate().
+    Optionally, implement a getrandbits() method so that randrange()
+    can cover arbitrarily large ranges.
+
+    """
+    def randrange(self, start, stop=None, step= 1):
+        """Choose a random item from range(stop) or range(start, stop[, step]).
+
+        Roughly equivalent to ``choice(range(start, stop, step))`` but
+        supports arbitrarily large ranges and is optimized for common cases.
+
+        """
